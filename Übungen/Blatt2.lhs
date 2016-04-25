@@ -6,10 +6,8 @@ Throat-Clearing
 
 a.k.a. Imports, damit der Code funktioniert.
 
-``` {.haskell}
-import Data.Functor
-import Data.Monoid
-```
+> import Data.Functor
+> import Data.Monoid
 
 Functor
 -------
@@ -23,20 +21,18 @@ Erinnerung:
 Nehmen sie an, sie hätten folgende Datentypen gegeben, für die alle eine
 `Functor`-Instanz existiert und eindeutig ist:
 
-``` {.haskell}
-data Identity a = Identity { unIdentity :: a }
-
-data Vielleicht a = Etwas a
-                  | Nichts
-
-data EntwederOder b a = Entweder a
-                      | Oder b
-
-data GameVector b a = V3 a a a
-                    | VStrange [a]
-                    | Neighbours [GameVector b a]
-                    | EntwederOder b (GameVector b a)
-```
+> data Identity a = Identity { unIdentity :: a }
+> 
+> data Vielleicht a = Etwas a
+>                   | Nichts
+>
+> data EntwederOder b a = Entweder a
+>                       | Oder b
+> 
+> data GameVector b a = V3 a a a
+>                     | VStrange [a]
+>                     | Neighbours [GameVector b a]
+>                     | EntwederOder b (GameVector b a)
 
 Schreiben sie hierzu die jeweiligen `Functor`-Instanzen.
 
@@ -52,35 +48,33 @@ Kann die Funktion nachher mehr als vorher?
 
 *Bonus*: Hat sich an der Laufzeit etwas verändert?
 
-``` {.haskell}
-mystery1 :: [[a]] -> [[a]]
-mystery1 = map (++[])
-
-mystery2 :: (Eq a) => a -> a -> a -> Bool
-mystery2 x y z
-  | x == y || y == z = True
-  | x == y && y == z = True
-  | x /= z           = False
-  | y /= z           = False
-  | x == y || y /= z = True
-  | otherwise        = False
-
-mystery3 :: Eq a => (a -> a) -> a -> [a] -> [a]
-mystery3 f a l = post a l'
-   where
-     l' = map f l
-     post a (x:xs)
-         | a == x    = x ++ post a xs
-         | otherwise =      post a xs
-     post _ [] = []
-
-mystery4 :: (Int -> Bool)
-         -> Vielleicht (EntwederOder String Int)
-         -> Vielleicht (EntwederOder String Bool)
-mystery4 f (Etwas (Entweder a)) = Etwas . Entweder . f $ a
-mystery4 _ (Etwas (Oder b))     = Etwas (Oder b)
-mystery4 _  Nichts              = Nichts
-```
+> mystery1 :: [[a]] -> [[a]]
+> mystery1 = map (++[])
+> 
+> mystery2 :: (Eq a) => a -> a -> a -> Bool
+> mystery2 x y z
+>   | x == y || y == z = True
+>   | x == y && y == z = True
+>   | x /= z           = False
+>   | y /= z           = False
+>   | x == y || y /= z = True
+>   | otherwise        = False
+> 
+> mystery3 :: Eq a => (a -> a) -> a -> [a] -> [a]
+> mystery3 f a l = post a l'
+>    where
+>      l' = map f l
+>      post a (x:xs)
+>          | a == x    = x : post a xs
+>          | otherwise =     post a xs
+>      post _ [] = []
+> 
+> mystery4 :: (Int -> Bool)
+>          -> Vielleicht (EntwederOder String Int)
+>          -> Vielleicht (EntwederOder String Bool)
+> mystery4 f (Etwas (Entweder a)) = Etwas . Entweder . f $ a
+> mystery4 _ (Etwas (Oder b))     = Etwas (Oder b)
+> mystery4 _  Nichts              = Nichts
 
 Bonus
 -----

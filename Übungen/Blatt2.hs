@@ -57,8 +57,8 @@ mystery3 f a l = post a l'
    where
      l' = map f l
      post a (x:xs)
-         | a == x    = x ++ post a xs
-         | otherwise =      post a xs
+         | a == x    = x : post a xs
+         | otherwise =     post a xs
      post _ [] = []
 
 mystery4 :: (Int -> Bool)
