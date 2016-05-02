@@ -17,9 +17,9 @@ fun2 a _ = a
 
 fun3 :: (Eq a) => a -> a -> Bool
 fun3 _ _ = True
-fun3 _ _ = False
-fun3 = (==)
-fun3 = (/=)
+--fun3 _ _ = False
+--fun3 = (==)
+--fun3 = (/=)
 
 -- Wir haben in der Vorlesung parametrisierte Typen kennengelernt. Der
 -- simpelste hiervon ist `Identity`, der nur einen anderen Typen einpackt.
@@ -41,7 +41,7 @@ unIdentity (Identity a) = a
 -- Schreiben Sie also eine Funktion
 
 mapIdentity :: (a -> b) -> Identity a -> Identity b
-mapIdentity f a = Identity . f . unIdentity
+mapIdentity f = Identity . f . unIdentity
 
 --mapIdentity f (Identity a) = Identity (f a)
 
@@ -78,8 +78,8 @@ unPred (Pred a) = a
 -- Was für eine Funktion bräuchten Sie um ein `Pred a` in ein `Pred b`
 -- umzuwandeln? Können Sie diese implementieren?
 
-mapPred :: _fun -> Pred a -> Pred b
-mapPred f (Pred a) = _mapPred
+mapPred :: (b -> a) -> Pred a -> Pred b
+mapPred f (Pred a) = Pred (a . f)
 
 -- Neue Typen erfinden
 -- -------------------
@@ -97,7 +97,8 @@ mapPred f (Pred a) = _mapPred
 -- konstruiert wird und ein zweiter Konstruktor, der keinen Wert nimmt,
 -- sondern die "Abwesenheit eines `a`" symbolisieren soll.
 
-data Vielleicht a = Exercise
+data Vielleicht a = Etwas a
+                  | Nichts
 
 -- Können Sie hier eine Funktion schreiben, die das `a` extrahiert? Wenn
 -- ja, implementieren Sie diese; wenn nein, geben Sie eine kurze
@@ -107,10 +108,21 @@ data Vielleicht a = Exercise
 -- `Vielleicht b` wandeln? Implementieren Sie
 
 mapVielleicht :: (a -> b) -> Vielleicht a -> Vielleicht b
-mapVielleicht = _mapVielleicht
+mapVielleicht f (Etwas a) = Etwas (f a)
+mapVielleicht f Nichts    = Nichts
 
 -- Bonus
 --
 -- Man kann Typen natürlich auch Schachteln. Worin liegt eigentlich der
 -- Unterschied zwischen einem `Pred (Vielleicht a)` und einem
 -- `Vielleicht (Pred a)`? Oder sind diese identisch?
+
+fun4 :: Pred (Vielleicht a) -> x
+fun4 (Pred a) = undefined
+
+fun5 :: Vielleicht (Pred a) -> x
+fun5 (Etwas (Pred a)) = undefined
+fun5 Nichts = undefined
+
+
+main = putStrLn "compiles"
