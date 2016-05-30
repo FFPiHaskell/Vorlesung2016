@@ -44,3 +44,122 @@ Skalieren sie die Zeit so, dass 1h aus dem Log 10 Sekunden in der Animation ents
 ## Aufgabe 4
 
 Denken sie sich weitere Visualisierungen des Datensatzes aus. Evtl. können sie z.b. mittels `play` den Datensatz interaktiv erkundbar machen.
+
+# Alternative aufgaben für gloss (ohne Parser)
+
+## Aufgabe 1
+
+Zeichne mit GLOSS die folgenden Formen:
+
+* Kreis
+* Rechteck
+* gefüllter Kreis (Farbe der Füllung: Rot)
+* Linie
+
+Die Hintergrundfarbe soll hierbei weiß sein, und das Bild eine Auflösung von 600x600px besitzen. Die Position des Fensters soll (300,100) betragen.
+
+## Aufgabe 2
+
+```haskell
+module Main where
+
+import Graphics.Gloss
+
+data Ball = BallData { ball         :: Float -> Picture
+                     , ballRadius   :: Float
+                     , ballColor    :: Color
+                     , ballposition :: (Float, Float)
+                     , ballTempo    :: (Float, Float)
+                     }
+initialData :: Ball
+initialData = BallData { ball         = circleSolid
+                       , ballRadius   = 100
+                       , ballColor    = red
+                       , ballposition = (150, 150)
+                       , ballTempo    = (40, 40)
+                       }
+
+window :: Display
+window = InWindow "Main Window" (600, 600) (300, 100)
+
+background :: Color
+background = black
+
+-- AUFGABE: Implementiere die Funktion render
+render :: Ball -> Picture
+render = undefined
+
+-- AUFGABE: Implementiere die Funktion moveBall, sodass der Ball sich bewegt.
+moveBall :: Ball -> Float -> Ball
+moveBall = undefined 
+
+main :: IO ()
+main = animate window background frame
+  where
+    frame :: Float -> Picture
+    frame = render . moveBall initialData
+```
+
+## Aufgabe 3
+
+```haskell
+module Main where
+
+import Graphics.Gloss
+import Graphics.Gloss.Data.ViewPort
+
+type Punkt  = (Float, Float)
+type Radius = Float
+
+(width, height) = (600, 600)
+
+
+data Ball = BallData { ball 	    :: Float -> Picture
+		     , ballRadius   :: Float
+		     , ballColor    :: Color
+		     , ballposition :: (Float, Float)
+                     , ballTempo    :: (Float, Float)
+                     }
+initialData :: Ball
+initialData = BallData { ball 	      = circleSolid
+		       , ballRadius   = 100
+		       , ballColor    = red
+		       , ballposition = (20, 0)
+                       , ballTempo    = (140, 140)
+                       }
+
+window :: Display
+window = InWindow "Main Window" (600, 600) (300, 100)
+
+background :: Color
+background = black
+
+fps :: Int
+fps = 120
+
+-- render Funktion aus der zweiten Aufgabe
+render :: Ball -> Picture
+render = undefined
+
+-- moveBall Funktion aus der zweiten Aufgabe
+moveBall :: Float -> Ball -> Ball
+moveBall = undefined
+
+-- -- AUFGABE: Implementiere die Funktion touchHori, sodass der Ball vom Oben und Unten zurueck kommt
+touchHori :: Punkt -> Radius -> Bool
+touchHori = undefined
+
+-- AUFGABE: Implementiere die Funktion touchVert, sodass der Ball von Rechts und Links zurueck kommt
+touchVert :: Punkt -> Radius -> Bool
+touchVert = undefined
+
+-- AUFGABE: Implementiere mithilfe der Funktionen touchHori und touchVert die Funktion checkTouchWall
+checkTouchWall :: Ball -> Ball
+checkTouchWall = undefined
+
+update :: ViewPort -> Float -> Ball -> Ball
+update _ s = checkTouchWall . moveBall s
+
+main :: IO ()
+main = simulate window background fps initialData render update
+```
