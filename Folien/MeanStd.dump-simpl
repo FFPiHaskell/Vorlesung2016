@@ -1,0 +1,280 @@
+
+==================== Tidy Core ====================
+2016-07-08 09:46:52.527923 UTC
+
+Result size of Tidy Core = {terms: 508, types: 449, coercions: 32}
+
+$WUT :: Double -> Int -> UnpackedTuple
+$WUT =
+  \ (dt :: Double) (dt :: Int) ->
+    case dt of _ { D# dt -> case dt of _ { I# dt -> UT dt dt } }
+
+$WST :: forall a b. a -> b -> StrictTuple a b
+$WST =
+  \ (@ a) (@ b) (dt :: a) (dt :: b) ->
+    case dt of dt { __DEFAULT ->
+    case dt of dt { __DEFAULT -> ST dt dt }
+    }
+
+a :: Vector Double -> Id Int
+a =
+  \ (x :: Vector Double) ->
+    case x `cast` ... of _ { Vector ipv ipv1 ipv2 ->
+    (I# ipv1) `cast` ...
+    }
+
+mean1 :: Integer
+mean1 = __integer 0
+
+mean2 :: Integer
+mean2 = __integer 1
+
+$slength :: Vector Double -> Int
+$slength = a `cast` ...
+
+mean06' :: forall a. (Fractional a, Unbox a) => Vector a -> a
+mean06' =
+  \ (@ a2)
+    ($dFractional :: Fractional a2)
+    ($dUnbox :: Unbox a2)
+    (eta :: Vector a2) ->
+    let {
+      $dNum :: Num a2
+      $dNum = $p1Fractional $dFractional } in
+    / $dFractional
+      (case eta of v2 { __DEFAULT ->
+       let {
+         $dVector :: Vector Vector a2
+         $dVector = $p1Unbox $dUnbox } in
+       case basicLength $dVector v2 of _ { I# ipv ->
+       let {
+         f :: a2 -> a2 -> a2
+         f = + $dNum } in
+       letrec {
+         $wfoldlM'_loop :: SPEC -> a2 -> Int# -> Id a2
+         $wfoldlM'_loop =
+           \ (w :: SPEC) (w1 :: a2) (ww :: Int#) ->
+             case w of _ { __DEFAULT ->
+             case w1 of z2 { __DEFAULT ->
+             case tagToEnum# (>=# ww ipv) of _ {
+               False ->
+                 case basicUnsafeIndexM $dVector $fMonadBox v2 (I# ww)
+                 of _ { Box x1 ->
+                 $wfoldlM'_loop SPEC (f z2 x1) (+# ww 1)
+                 };
+               True -> z2 `cast` ...
+             }
+             }
+             }; } in
+       ($wfoldlM'_loop SPEC (fromInteger $dNum mean1) 0) `cast` ...
+       }
+       })
+      (fromInteger
+         $dNum
+         (case length ($p1Unbox $dUnbox) eta of _ { I# i ->
+          smallInteger i
+          }))
+
+mean01 :: forall a. Fractional a => [a] -> a
+mean01 =
+  \ (@ a2) ($dFractional :: Fractional a2) (eta :: [a2]) ->
+    let {
+      $dNum :: Num a2
+      $dNum = $p1Fractional $dFractional } in
+    let {
+      ds :: (a2, Integer)
+      ds =
+        letrec {
+          $wgo1 :: [a2] -> a2 -> Integer -> (# a2, Integer #)
+          $wgo1 =
+            \ (w :: [a2]) (ww :: a2) (ww1 :: Integer) ->
+              case w of _ {
+                [] -> (# ww, ww1 #);
+                : y ys -> $wgo1 ys (+ $dNum ww y) (plusInteger ww1 mean2)
+              }; } in
+        case $wgo1 eta (fromInteger $dNum mean1) mean1
+        of _ { (# ww1, ww2 #) ->
+        (ww1, ww2)
+        } } in
+    / $dFractional
+      (case ds of _ { (s, l) -> s })
+      (fromInteger $dNum (case ds of _ { (s, l) -> l }))
+
+mean02 :: forall a. Fractional a => [a] -> a
+mean02 =
+  \ (@ a2) ($dFractional :: Fractional a2) (eta :: [a2]) ->
+    let {
+      $dNum :: Num a2
+      $dNum = $p1Fractional $dFractional } in
+    let {
+      ds :: (a2, Integer)
+      ds =
+        letrec {
+          $wgo1 :: [a2] -> a2 -> Integer -> (# a2, Integer #)
+          $wgo1 =
+            \ (w :: [a2]) (ww :: a2) (ww1 :: Integer) ->
+              case w of _ {
+                [] -> (# ww, ww1 #);
+                : y ys -> $wgo1 ys (+ $dNum ww y) (plusInteger ww1 mean2)
+              }; } in
+        case $wgo1 eta (fromInteger $dNum mean1) mean1
+        of _ { (# ww1, ww2 #) ->
+        (ww1, ww2)
+        } } in
+    / $dFractional
+      (case ds of _ { (s, l) -> s })
+      (fromInteger $dNum (case ds of _ { (s, l) -> l }))
+
+mean03 :: forall a. Fractional a => [a] -> a
+mean03 =
+  \ (@ a2) ($dFractional :: Fractional a2) (eta :: [a2]) ->
+    let {
+      $dNum :: Num a2
+      $dNum = $p1Fractional $dFractional } in
+    let {
+      ds :: (a2, Integer)
+      ds =
+        letrec {
+          $wgo1 :: [a2] -> a2 -> Integer -> (# a2, Integer #)
+          $wgo1 =
+            \ (w :: [a2]) (ww :: a2) (ww1 :: Integer) ->
+              case w of _ {
+                [] -> (# ww, ww1 #);
+                : y ys ->
+                  case ww of a3 { __DEFAULT ->
+                  case ww1 of b { __DEFAULT ->
+                  $wgo1 ys (+ $dNum a3 y) (plusInteger b mean2)
+                  }
+                  }
+              }; } in
+        case $wgo1 eta (fromInteger $dNum mean1) mean1
+        of _ { (# ww1, ww2 #) ->
+        (ww1, ww2)
+        } } in
+    / $dFractional
+      (case ds of _ { (s, l) -> s })
+      (fromInteger $dNum (case ds of _ { (s, l) -> l }))
+
+mean04 :: forall a. Fractional a => [a] -> a
+mean04 =
+  \ (@ a2) ($dFractional :: Fractional a2) (eta :: [a2]) ->
+    let {
+      $dNum :: Num a2
+      $dNum = $p1Fractional $dFractional } in
+    let {
+      ds :: StrictTuple a2 Integer
+      ds =
+        case fromInteger $dNum mean1 of dt { __DEFAULT ->
+        letrec {
+          $wgo1 :: [a2] -> a2 -> Integer -> (# a2, Integer #)
+          $wgo1 =
+            \ (w :: [a2]) (ww :: a2) (ww1 :: Integer) ->
+              case w of _ {
+                [] -> (# ww, ww1 #);
+                : y ys ->
+                  case + $dNum ww y of dt1 { __DEFAULT ->
+                  case plusInteger ww1 mean2 of dt2 { __DEFAULT -> $wgo1 ys dt1 dt2 }
+                  }
+              }; } in
+        case $wgo1 eta dt mean1 of _ { (# ww1, ww2 #) -> ST ww1 ww2 }
+        } } in
+    / $dFractional
+      (case ds of _ { ST s l -> s })
+      (fromInteger $dNum (case ds of _ { ST s l -> l }))
+
+Rec {
+$wgo :: [Double] -> Double# -> Int# -> (# Double#, Int# #)
+$wgo =
+  \ (w :: [Double]) (ww :: Double#) (ww1 :: Int#) ->
+    case w of _ {
+      [] -> (# ww, ww1 #);
+      : y ys -> case y of _ { D# y1 -> $wgo ys (+## ww y1) (+# ww1 1) }
+    }
+end Rec }
+
+mean05 :: [Double] -> Double
+mean05 =
+  \ (w :: [Double]) ->
+    case $wgo w 0.0 0 of _ { (# ww1, ww2 #) ->
+    case /## ww1 (int2Double# ww2) of ww3 { __DEFAULT -> D# ww3 }
+    }
+
+mean06 :: forall a. (Fractional a, Unbox a) => Vector a -> a
+mean06 =
+  \ (@ a2)
+    ($dFractional :: Fractional a2)
+    ($dUnbox :: Unbox a2)
+    (eta :: Vector a2) ->
+    let {
+      $dNum :: Num a2
+      $dNum = $p1Fractional $dFractional } in
+    / $dFractional
+      (case eta of v2 { __DEFAULT ->
+       let {
+         $dVector :: Vector Vector a2
+         $dVector = $p1Unbox $dUnbox } in
+       case basicLength $dVector v2 of _ { I# ipv ->
+       let {
+         f :: a2 -> a2 -> a2
+         f = + $dNum } in
+       letrec {
+         $wfoldlM'_loop :: SPEC -> a2 -> Int# -> Id a2
+         $wfoldlM'_loop =
+           \ (w :: SPEC) (w1 :: a2) (ww :: Int#) ->
+             case w of _ { __DEFAULT ->
+             case w1 of z2 { __DEFAULT ->
+             case tagToEnum# (>=# ww ipv) of _ {
+               False ->
+                 case basicUnsafeIndexM $dVector $fMonadBox v2 (I# ww)
+                 of _ { Box x1 ->
+                 $wfoldlM'_loop SPEC (f z2 x1) (+# ww 1)
+                 };
+               True -> z2 `cast` ...
+             }
+             }
+             }; } in
+       ($wfoldlM'_loop SPEC (fromInteger $dNum mean1) 0) `cast` ...
+       }
+       })
+      (fromInteger
+         $dNum
+         (case length ($p1Unbox $dUnbox) eta of _ { I# i ->
+          smallInteger i
+          }))
+
+$wmean07 :: Int# -> Int# -> ByteArray# -> Double#
+$wmean07 =
+  \ (ww :: Int#) (ww1 :: Int#) (ww2 :: ByteArray#) ->
+    letrec {
+      $wfoldlM'_loop :: SPEC -> Double# -> Int# -> Double#
+      $wfoldlM'_loop =
+        \ (w :: SPEC) (ww3 :: Double#) (ww4 :: Int#) ->
+          case w of _ { __DEFAULT ->
+          case tagToEnum# (>=# ww4 ww1) of _ {
+            False ->
+              case indexDoubleArray# ww2 (+# ww ww4) of wild { __DEFAULT ->
+              $wfoldlM'_loop SPEC (+## ww3 wild) (+# ww4 1)
+              };
+            True -> ww3
+          }
+          }; } in
+    case $wfoldlM'_loop SPEC 0.0 0 of ww3 { __DEFAULT ->
+    case $slength ((Vector ww ww1 ww2) `cast` ...) of _ { I# i ->
+    /## ww3 (int2Double# i)
+    }
+    }
+
+mean07 :: Vector Double -> Double
+mean07 =
+  \ (w :: Vector Double) ->
+    case w `cast` ... of _ { Vector ww1 ww2 ww3 ->
+    case $wmean07 ww1 ww2 ww3 of ww4 { __DEFAULT -> D# ww4 }
+    }
+
+
+------ Local rules for imported ids --------
+"SPEC/MeanStd length @ Vector @ Double" [ALWAYS]
+    forall ($dVector :: Vector Vector Double).
+      length $dVector
+      = $slength
+
