@@ -1,0 +1,201 @@
+	Wed Jun 29 16:33 2016 Time and Allocation Profiling Report  (Final)
+
+	   eventrate +RTS -s -p -RTS 2016-06-08-atis-trials/vp09-dotstimuli-noflicker-m-nomakeup-glasses/video_td_080616_141855.val 2016-06-08-atis-trials/vp09-dotstimuli-noflicker-m-nomakeup-glasses/rates.csv
+
+	total time  =       44.01 secs   (44008 ticks @ 1000 us, 1 processor)
+	total alloc = 55,502,215,128 bytes  (excludes profiling overheads)
+
+COST CENTRE            MODULE                        %time %alloc
+
+decodeStreamWith       System.IO.Streams.Csv.Decode   50.3   77.9
+handleToOutputStream.f System.IO.Streams.Handle       18.0    4.1
+encodeRates            Main                           17.3   10.2
+eventRate.go.s'        EventDriven.Rate                4.3    2.5
+eventRate.go           EventDriven.Rate                2.4    1.2
+contramap              System.IO.Streams.Combinators   1.1    0.7
+
+
+                                                                                                 individual     inherited
+COST CENTRE                            MODULE                                  no.     entries  %time %alloc   %time %alloc
+
+MAIN                                   MAIN                                    729           0    0.0    0.0   100.0  100.0
+ main                                  Main                                   1459           0    0.1    0.0   100.0  100.0
+  main.\                               Main                                   1466           0    0.1    0.0     0.1    0.1
+   main.\.\                            Main                                   1580           0    0.0    0.0     0.1    0.1
+    encodeRates                        Main                                   1581           0    0.0    0.1     0.0    0.1
+   withFileAsOutput                    System.IO.Streams.File                 1467           1    0.0    0.0     0.0    0.0
+  withFileAsInput                      System.IO.Streams.File                 1461           0    0.0    0.0    99.8   99.9
+   withFileAsInputStartingAt           System.IO.Streams.File                 1462           1    0.0    0.0    99.8   99.9
+    withFileAsInputStartingAt.go       System.IO.Streams.File                 1463           1    0.0    0.0    99.8   99.9
+     main.\                            Main                                   1465           1    0.0    0.0    99.8   99.9
+      main.\.\                         Main                                   1473           0    0.0    0.0     0.0    0.0
+       map                             System.IO.Streams.Combinators          1489           1    0.0    0.0     0.0    0.0
+       eventRate                       EventDriven.Rate                       1486           1    0.0    0.0     0.0    0.0
+        eventRate.go                   EventDriven.Rate                       1502           1    0.0    0.0     0.0    0.0
+         _read                         System.IO.Streams.Internal             1508           1    0.0    0.0     0.0    0.0
+        fromGenerator                  System.IO.Streams.Internal             1487           1    0.0    0.0     0.0    0.0
+         fromGenerator.go              System.IO.Streams.Internal             1488           1    0.0    0.0     0.0    0.0
+       fixTimestamps                   EventDriven.FixTimestamps              1478           0    0.0    0.0     0.0    0.0
+        concatLists                    System.IO.Streams.List                 1483           1    0.0    0.0     0.0    0.0
+         concatLists.go                System.IO.Streams.List                 1514           1    0.0    0.0     0.0    0.0
+          liftIO                       System.IO.Streams.Internal             1516           1    0.0    0.0     0.0    0.0
+         fromGenerator                 System.IO.Streams.Internal             1484           1    0.0    0.0     0.0    0.0
+          fromGenerator.go             System.IO.Streams.Internal             1485           1    0.0    0.0     0.0    0.0
+        map                            System.IO.Streams.Combinators          1482           1    0.0    0.0     0.0    0.0
+        sGroupBy'                      EventDriven.FixTimestamps              1479           1    0.0    0.0     0.0    0.0
+         sGroupBy'.go                  EventDriven.FixTimestamps              1525           1    0.0    0.0     0.0    0.0
+          _read                        System.IO.Streams.Internal             1531           1    0.0    0.0     0.0    0.0
+         fromGenerator                 System.IO.Streams.Internal             1480           1    0.0    0.0     0.0    0.0
+          fromGenerator.go             System.IO.Streams.Internal             1481           1    0.0    0.0     0.0    0.0
+       dlmInputStream                  EventDriven.IO                         1474           1    0.0    0.0     0.0    0.0
+        dlmInputStream.opts            EventDriven.IO                         1537           1    0.0    0.0     0.0    0.0
+        onlyValidRecords               System.IO.Streams.Csv.Decode           1476           1    0.0    0.0     0.0    0.0
+        decodeStreamWith               System.IO.Streams.Csv.Decode           1475           1    0.0    0.0     0.0    0.0
+      withFileAsOutput                 System.IO.Streams.File                 1468           0    0.0    0.0    99.8   99.9
+       withFileAsOutputExt             System.IO.Streams.File                 1469           1    0.0    0.0    99.8   99.9
+        withFileAsOutputExt.\          System.IO.Streams.File                 1470           1    0.0    0.0    99.8   99.9
+         main.\.\                      Main                                   1472           1    0.4    0.0    99.8   99.9
+          _write                       System.IO.Streams.Internal             1568     1491109    0.1    0.0     0.1    0.0
+          dlmInputStream               EventDriven.IO                         1532           0    0.0    0.0    50.7   78.6
+           decodeStreamWith            System.IO.Streams.Csv.Decode           1535           0   50.3   77.9    50.5   78.6
+            dispatch                   System.IO.Streams.Csv.Decode           1536     2198575    0.1    0.1     0.2    0.7
+             dispatch.feed             System.IO.Streams.Csv.Decode           1546        3413    0.0    0.0     0.0    0.0
+             dispatch.more             System.IO.Streams.Csv.Decode           1541        3414    0.0    0.4     0.1    0.6
+              handleToInputStream      System.IO.Streams.Handle               1543           0    0.0    0.0     0.1    0.2
+               handleToInputStream.f   System.IO.Streams.Handle               1544        3414    0.1    0.2     0.1    0.2
+              _read                    System.IO.Streams.Internal             1542        3414    0.0    0.0     0.0    0.0
+           onlyValidRecords            System.IO.Streams.Csv.Decode           1533           0    0.1    0.1     0.1    0.1
+            _read                      System.IO.Streams.Internal             1534     2191748    0.0    0.0     0.0    0.0
+          fixTimestamps                EventDriven.FixTimestamps              1509           0    0.1    0.0     2.9    2.1
+           cpuTimestamp                EventDriven.Types                      1548     4383492    0.0    0.0     0.0    0.0
+           sGroupBy'                   EventDriven.FixTimestamps              1521           0    0.0    0.2     0.5    0.7
+            sGroupBy'.go               EventDriven.FixTimestamps              1526     2191747    0.2    0.4     0.2    0.4
+             yield                     System.IO.Streams.Internal             1549           5    0.0    0.0     0.0    0.0
+             unG                       System.IO.Streams.Internal             1547       60907    0.0    0.0     0.0    0.0
+            fromGenerator              System.IO.Streams.Internal             1522           0    0.0    0.0     0.3    0.1
+             fromGenerator.go          System.IO.Streams.Internal             1523           0    0.0    0.0     0.3    0.1
+              fromGenerator.go.\       System.IO.Streams.Internal             1524           6    0.0    0.0     0.3    0.1
+               sGroupBy'.go            EventDriven.FixTimestamps              1614           0    0.3    0.1     0.3    0.1
+                unG                    System.IO.Streams.Internal             1616     2130845    0.0    0.0     0.0    0.0
+                yield                  System.IO.Streams.Internal             1615           0    0.0    0.0     0.0    0.0
+               fromGenerator.go.step   System.IO.Streams.Internal             1550           5    0.0    0.0     0.0    0.0
+                unG                    System.IO.Streams.Internal             1551           5    0.0    0.0     0.0    0.0
+           map                         System.IO.Streams.Combinators          1518           0    0.0    0.0     0.8    0.4
+            map.g                      System.IO.Streams.Combinators          1519           6    0.0    0.0     0.8    0.4
+             fixTimestampGroup         EventDriven.FixTimestamps              1554           5    0.5    0.2     0.8    0.4
+              fixTimestampGroup.endTs  EventDriven.FixTimestamps              1559           5    0.0    0.0     0.0    0.0
+               timestamp               EventDriven.Types                      1560           5    0.0    0.0     0.0    0.0
+              fixTimestampGroup.endCPU EventDriven.FixTimestamps              1557           5    0.0    0.0     0.0    0.0
+               cpuTimestamp            EventDriven.Types                      1558           5    0.0    0.0     0.0    0.0
+              fixTimestampGroup.\      EventDriven.FixTimestamps              1556     1491109    0.3    0.2     0.3    0.2
+               timestamp               EventDriven.Types                      1561     1491109    0.0    0.0     0.0    0.0
+             _read                     System.IO.Streams.Internal             1520           6    0.0    0.0     0.0    0.0
+           concatLists                 System.IO.Streams.List                 1510           0    0.0    0.0     1.4    0.9
+            concatLists.go             System.IO.Streams.List                 1515           0    0.0    0.0     0.4    0.3
+             concatLists.chunk         System.IO.Streams.List                 1553           5    0.3    0.3     0.4    0.3
+              yield                    System.IO.Streams.Internal             1555     1491109    0.1    0.0     0.1    0.0
+             unG                       System.IO.Streams.Internal             1552           5    0.0    0.0     0.0    0.0
+             _read                     System.IO.Streams.Internal             1517           6    0.0    0.0     0.0    0.0
+            fromGenerator              System.IO.Streams.Internal             1511           0    0.2    0.0     1.0    0.6
+             fromGenerator.go          System.IO.Streams.Internal             1512           0    0.1    0.0     0.9    0.6
+              fromGenerator.go.\       System.IO.Streams.Internal             1513     1491110    0.1    0.0     0.8    0.6
+               concatLists.go          System.IO.Streams.List                 1600           0    0.0    0.0     0.6    0.5
+                concatLists.chunk      System.IO.Streams.List                 1601           0    0.5    0.3     0.6    0.5
+                 unG                   System.IO.Streams.Internal             1603     1491114    0.0    0.0     0.0    0.0
+                 yield                 System.IO.Streams.Internal             1602           0    0.0    0.2     0.0    0.2
+               fromGenerator.go.step   System.IO.Streams.Internal             1562     1491109    0.1    0.1     0.1    0.1
+                unG                    System.IO.Streams.Internal             1563     1491109    0.0    0.0     0.0    0.0
+          eventRate                    EventDriven.Rate                       1498           0    0.1    0.0     7.8    4.1
+           eventRate.go                EventDriven.Rate                       1504     1491109    0.4    0.2     0.4    0.2
+            eventRate.go.s'            EventDriven.Rate                       1587           1    0.0    0.0     0.0    0.0
+             timestamp                 EventDriven.Types                      1589           1    0.0    0.0     0.0    0.0
+             eventRate.go.s'.\         EventDriven.Rate                       1588           1    0.0    0.0     0.0    0.0
+              timestamp                EventDriven.Types                      1590           1    0.0    0.0     0.0    0.0
+            eventRate.go.rate          EventDriven.Rate                       1586           1    0.0    0.0     0.0    0.0
+            timestamp                  EventDriven.Types                      1578           1    0.0    0.0     0.0    0.0
+            yield                      System.IO.Streams.Internal             1565           1    0.0    0.0     0.0    0.0
+            unG                        System.IO.Streams.Internal             1564           1    0.0    0.0     0.0    0.0
+           fromGenerator               System.IO.Streams.Internal             1499           0    0.1    0.0     7.3    3.9
+            fromGenerator.go           System.IO.Streams.Internal             1500           0    0.1    0.0     7.2    3.9
+             fromGenerator.go.\        System.IO.Streams.Internal             1501     1491110    0.1    0.0     7.1    3.9
+              eventRate.go             EventDriven.Rate                       1595           0    2.0    1.0     7.0    3.8
+               eventRate.go.s'         EventDriven.Rate                       1606     1491108    4.3    2.5     4.8    2.6
+                timestamp              EventDriven.Types                      1609     1490724    0.2    0.0     0.2    0.0
+                eventRate.go.s'.\      EventDriven.Rate                       1607     2981832    0.3    0.0     0.3    0.0
+                 timestamp             EventDriven.Types                      1608     1491108    0.0    0.0     0.0    0.0
+               eventRate.go.rate       EventDriven.Rate                       1605     1491108    0.1    0.0     0.1    0.0
+               timestamp               EventDriven.Types                      1604     1491108    0.0    0.0     0.0    0.0
+               unG                     System.IO.Streams.Internal             1599     2982217    0.0    0.0     0.0    0.0
+               yield                   System.IO.Streams.Internal             1598     1491108    0.1    0.0     0.1    0.0
+              fromGenerator.go.step    System.IO.Streams.Internal             1566     1491109    0.0    0.1     0.0    0.1
+               unG                     System.IO.Streams.Internal             1567     1491109    0.0    0.0     0.0    0.0
+          map                          System.IO.Streams.Combinators          1495           0    0.1    0.0    17.9   10.3
+           map.g                       System.IO.Streams.Combinators          1496     1491110    0.5    0.1    17.8   10.3
+            encodeRates                Main                                   1579     1491109   17.2   10.1    17.2   10.1
+            _read                      System.IO.Streams.Internal             1497     1491110    0.0    0.0     0.0    0.0
+          _read                        System.IO.Streams.Internal             1494           1    0.0    0.0     0.0    0.0
+          encodeUtf8                   System.IO.Streams.Text                 1492           0    0.0    0.0    20.0    4.8
+           contramap                   System.IO.Streams.Combinators          1493           1    1.1    0.7    20.0    4.8
+            unlines                    System.IO.Streams.ByteString           1570           0    0.2    0.0    18.8    4.1
+             unlines.\                 System.IO.Streams.ByteString           1571     1491109    0.3    0.0    18.7    4.1
+              handleToOutputStream     System.IO.Streams.Handle               1573           0    0.3    0.0    18.4    4.1
+               handleToOutputStream.f  System.IO.Streams.Handle               1574     2982218   18.0    4.1    18.0    4.1
+              _write                   System.IO.Streams.Internal             1572     1491109    0.0    0.0     0.0    0.0
+            _write                     System.IO.Streams.Internal             1569     1491109    0.0    0.0     0.0    0.0
+          unlines                      System.IO.Streams.ByteString           1490           1    0.0    0.0     0.0    0.0
+           unlines.\                   System.IO.Streams.ByteString           1591           0    0.0    0.0     0.0    0.0
+            _write                     System.IO.Streams.Internal             1592           1    0.0    0.0     0.0    0.0
+         handleToOutputStream          System.IO.Streams.Handle               1471           1    0.0    0.0     0.0    0.0
+     handleToInputStream               System.IO.Streams.Handle               1464           1    0.0    0.0     0.0    0.0
+ CAF:main1                             Main                                   1456           0    0.0    0.0     0.0    0.0
+  main                                 Main                                   1458           1    0.0    0.0     0.0    0.0
+ CAF:main4                             Main                                   1454           0    0.0    0.0     0.0    0.0
+  main                                 Main                                   1582           0    0.0    0.0     0.0    0.0
+   main.\                              Main                                   1583           0    0.0    0.0     0.0    0.0
+    main.\.\                           Main                                   1584           0    0.0    0.0     0.0    0.0
+     encodeRates                       Main                                   1585           0    0.0    0.0     0.0    0.0
+ CAF:$fFromRecordAddressEvent1         EventDriven.Types                      1323           0    0.0    0.0     0.0    0.0
+ CAF:dlmInputStream2                   EventDriven.IO                         1306           0    0.0    0.0     0.0    0.0
+  dlmInputStream                       EventDriven.IO                         1538           0    0.0    0.0     0.0    0.0
+   dlmInputStream.opts                 EventDriven.IO                         1539           0    0.0    0.0     0.0    0.0
+ CAF:delimiter                         EventDriven.IO                         1305           0    0.0    0.0     0.0    0.0
+  delimiter                            EventDriven.IO                         1540           1    0.0    0.0     0.0    0.0
+ CAF:eventRate5                        EventDriven.Rate                       1303           0    0.0    0.0     0.0    0.0
+  eventRate                            EventDriven.Rate                       1505           0    0.0    0.0     0.0    0.0
+   eventRate.go                        EventDriven.Rate                       1506           0    0.0    0.0     0.0    0.0
+    liftIO                             System.IO.Streams.Internal             1507           1    0.0    0.0     0.0    0.0
+ CAF:fixTimestamps1                    EventDriven.FixTimestamps              1301           0    0.0    0.0     0.0    0.0
+  fixTimestamps                        EventDriven.FixTimestamps              1477           1    0.0    0.0     0.0    0.0
+ CAF:fixTimestamps2                    EventDriven.FixTimestamps              1300           0    0.0    0.0     0.0    0.0
+  fixTimestamps                        EventDriven.FixTimestamps              1527           0    0.0    0.0     0.0    0.0
+   sGroupBy'                           EventDriven.FixTimestamps              1528           0    0.0    0.0     0.0    0.0
+    sGroupBy'.go                       EventDriven.FixTimestamps              1529           0    0.0    0.0     0.0    0.0
+     liftIO                            System.IO.Streams.Internal             1530           1    0.0    0.0     0.0    0.0
+ CAF                                   Data.Csv.Incremental                   1293           0    0.0    0.0     0.0    0.0
+ CAF                                   Data.Csv.Conversion                    1291           0    0.0    0.0     0.0    0.0
+ CAF                                   TextShow.Data.Floating                  871           0    0.0    0.0     0.0    0.0
+ CAF                                   System.IO.Streams.ByteString            865           0    0.0    0.0     0.0    0.0
+  unlines                              System.IO.Streams.ByteString           1593           0    0.0    0.0     0.0    0.0
+   unlines.\                           System.IO.Streams.ByteString           1594           0    0.0    0.0     0.0    0.0
+ CAF                                   System.IO.Streams.File                  863           0    0.0    0.0     0.0    0.0
+  withFileAsInput                      System.IO.Streams.File                 1460           1    0.0    0.0     0.0    0.0
+ CAF                                   System.IO.Streams.List                  862           0    0.0    0.0     0.0    0.0
+  concatLists                          System.IO.Streams.List                 1610           0    0.0    0.0     0.0    0.0
+   concatLists.go                      System.IO.Streams.List                 1611           0    0.0    0.0     0.0    0.0
+    concatLists.chunk                  System.IO.Streams.List                 1612           0    0.0    0.0     0.0    0.0
+     return                            System.IO.Streams.Internal             1613           1    0.0    0.0     0.0    0.0
+ CAF                                   System.IO.Streams.Text                  861           0    0.0    0.0     0.0    0.0
+  encodeUtf8                           System.IO.Streams.Text                 1491           1    0.0    0.0     0.0    0.0
+ CAF                                   System.IO.Streams.Internal              860           0    0.0    0.0     0.0    0.0
+  yield                                System.IO.Streams.Internal             1596           0    0.0    0.0     0.0    0.0
+   return                              System.IO.Streams.Internal             1597           1    0.0    0.0     0.0    0.0
+  >>=                                  System.IO.Streams.Internal             1503           1    0.0    0.0     0.0    0.0
+ CAF                                   System.IO.Streams.Handle                859           0    0.0    0.0     0.0    0.0
+  bUFSIZ                               System.IO.Streams.Handle               1545           1    0.0    0.0     0.0    0.0
+ CAF                                   Data.Text.Internal.Builder.Int.Digits   798           0    0.0    0.0     0.0    0.0
+ CAF                                   GHC.IO.Encoding                         780           0    0.0    0.0     0.0    0.0
+ CAF                                   GHC.IO.Handle.FD                        777           0    0.0    0.0     0.0    0.0
+ CAF                                   GHC.IO.FD                               766           0    0.0    0.0     0.0    0.0
+ CAF                                   GHC.TopHandler                          761           0    0.0    0.0     0.0    0.0
+ CAF                                   GHC.Conc.Signal                         755           0    0.0    0.0     0.0    0.0
+ CAF                                   GHC.IO.Encoding.Iconv                   752           0    0.0    0.0     0.0    0.0
